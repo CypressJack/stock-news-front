@@ -4,6 +4,8 @@ export default function Sentiment(props) {
   let sentiment;
   let className;
   if (props.stories) {
+    pos = 0;
+    neg = 0;
     for (const story of props.stories) {
       if (story.sentiment === "Negative") {
         neg++;
@@ -13,17 +15,19 @@ export default function Sentiment(props) {
       }
     }
     if (pos > neg) {
-      sentiment = `Today's news sentiment is negative`;
-      className = "sentiment" + " neg";
-    }
-    if (neg > pos) {
       sentiment = `Today's news sentiment is positive`;
       className = "sentiment" + " pos";
+    }
+    if (neg > pos) {
+      sentiment = `Today's news sentiment is negative`;
+      className = "sentiment" + " neg";
     }
     if (pos === neg) {
       sentiment = `Today's news sentiment is neutral`;
       className = "sentiment" + " neut";
     }
+    console.log("neg", neg);
+    console.log("pos", pos);
   }
   return (
     <div className={className}>
